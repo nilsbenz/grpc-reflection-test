@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package echo;
+
+option java_multiple_files = true;
+
+
+service EchoService {
+  rpc echo (EchoRequest) returns (EchoResponse) {}
+}
+
+message EchoRequest {
+  string message = 1;
+}
+
+message EchoResponse {
+  string message = 1;
+  repeated Trace traces = 2;
+}
+
+message Trace {
+  string host = 1;
+}

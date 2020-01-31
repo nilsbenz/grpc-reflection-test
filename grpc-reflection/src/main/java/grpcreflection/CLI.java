@@ -24,7 +24,7 @@ public class CLI {
 
    public static void main(String[] args) {
       final ManagedChannel channel = ManagedChannelBuilder
-            .forTarget("localhost:7070")
+            .forTarget("localhost:8080")
             .usePlaintext()
             .build();
 
@@ -35,7 +35,8 @@ public class CLI {
       System.out.println("===================================");
       cli.healthCheck();
       System.out.println("===================================");
-      cli.getPossibleProducts();
+      //cli.getPossibleProducts();
+      cli.callEcho("Hallo Welt");
 
       channel.shutdown();
    }
@@ -43,6 +44,13 @@ public class CLI {
    private void healthCheck() {
       MethodDescriptor method = serviceModel.getMethod("grpc.health.v1.Health.Check");
       String result = invoke(method, "{}");
+      System.out.println(result);
+   }
+
+   private void callEcho(String message) {
+      MethodDescriptor method = serviceModel.getMethod("echo.EchoService.echo");
+      String jsonRequest = "{ \"message\": \"" + message + "\" }";
+      String result = invoke(method, jsonRequest);
       System.out.println(result);
    }
 

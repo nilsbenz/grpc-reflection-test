@@ -8,3 +8,6 @@
  */
 
 rootProject.name = "grpc-reflection-test"
+
+include("grpc-reflection")
+include("grpc-test-server")
