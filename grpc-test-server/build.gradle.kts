@@ -24,6 +24,10 @@ application {
     mainClassName = "server.TestServer"
 }
 
+tasks.register("runServer") {
+    dependsOn(tasks.getByName("run"))
+}
+
 project.the<SourceSetContainer>()["main"].java {
     srcDir(buildDir.path + "/generated/source/proto/main/java")
     srcDir(buildDir.path + "/generated/source/proto/main/grpc")

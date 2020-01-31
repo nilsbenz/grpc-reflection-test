@@ -17,3 +17,7 @@ dependencies {
 application {
     mainClassName = "grpcreflection.CLI"
 }
+
+tasks.register("runClient") {
+    dependsOn(tasks.getByName("run"))
+}
